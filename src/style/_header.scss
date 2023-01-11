@@ -1,0 +1,62 @@
+.header {
+  padding: 24px;
+
+  @include tablet {
+    padding: 16px 0;
+  }
+  &__container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    @include mobile {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  &__phone {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    text-transform: uppercase;
+    color: #000000;
+    @include tablet {
+      font-size: 12px;
+      line-height: 15px;
+    }
+
+    @include mobile {
+      display: none;
+    }
+  }
+  &__logo {
+    width: 200px;
+    justify-self: center;
+    @include tablet {
+      width: 154px;
+    }
+
+    @include mobile {
+      width: 124px;
+      justify-self: start;
+    }
+  }
+
+  &__navigation {
+    justify-self: end;
+  }
+  &__nav-list {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+
+    @include mobile {
+      gap: 16px;
+    }
+  }
+
+  &__link {
+    transition: color 0.3s ease-in-out;
+    &:hover {
+      color: $gray;
+    }
+  }
+}
