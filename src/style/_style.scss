@@ -64,6 +64,9 @@ visually-hidden {
 main {
   margin-bottom: 120px;
 
+  @include laptop {
+    margin-bottom: 120px;
+  }
   @include tablet {
     margin-bottom: 80px;
   }

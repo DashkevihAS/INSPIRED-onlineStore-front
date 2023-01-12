@@ -1,0 +1,48 @@
+.product {
+  &__image {
+    margin-bottom: 16px;
+    @include tablet {
+      margin-bottom: 10px;
+    }
+  }
+  &__title {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    margin-bottom: 16px;
+    @include tablet {
+      font-size: 12px;
+      line-height: 15px;
+      margin-bottom: 10px;
+    }
+  }
+  &__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 19px;
+    @include tablet {
+      margin-bottom: 10px;
+    }
+  }
+  &__price {
+    font-size: 14px;
+    line-height: 17px;
+
+    @include tablet {
+      font-size: 12px;
+      line-height: 15px;
+    }
+  }
+  &__btn-favorite {
+    width: 24px;
+    height: 24px;
+    background-image: url('../img/heart.svg');
+  }
+  &__color-list {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding-bottom: 3px;
+  }
+}
