@@ -1,4 +1,10 @@
 .product {
+  &__link {
+    transition: color 0.3s ease-in-out;
+    &:hover {
+      color: $gray;
+    }
+  }
   &__image {
     margin-bottom: 16px;
     @include tablet {
@@ -9,7 +15,7 @@
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
-    margin-bottom: 16px;
+    margin-bottom: 13px;
     @include tablet {
       font-size: 12px;
       line-height: 15px;
@@ -38,11 +44,20 @@
     width: 24px;
     height: 24px;
     background-image: url('../img/heart.svg');
+    transition: background-image 0.3s ease-in-out;
+    &:hover {
+      background-image: url('../img/heart-red-hover.svg');
+    }
+    &_active {
+      background-image: url('../img/heart-red.svg');
+      &:hover {
+        background-image: url('../img/heart.svg');
+      }
+    }
   }
   &__color-list {
     display: flex;
     align-items: center;
-    gap: 6px;
-    padding-bottom: 3px;
+    gap: 3px;
   }
 }

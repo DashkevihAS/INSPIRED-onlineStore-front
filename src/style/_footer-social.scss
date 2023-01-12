@@ -1,4 +1,7 @@
 .footer-social {
+  @include mobile {
+    margin-left: -40px;
+  }
   &__title {
     margin-bottom: 16px;
     @include mobile {
@@ -22,5 +25,15 @@
     display: flex;
     align-items: center;
     gap: 10px;
+  }
+  &__link_fb {
+    &:hover {
+      color: #3b5998;
+    }
+  }
+  &__link_vk {
+    &:hover {
+      color: #0077ff;
+    }
   }
 }
