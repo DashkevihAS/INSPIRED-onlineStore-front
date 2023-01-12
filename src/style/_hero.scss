@@ -1,0 +1,87 @@
+.hero {
+  background-color: $dark-gray;
+  color: $second-color;
+  margin-bottom: 80px;
+  background-size: cover;
+  background-position: center;
+  @include tablet {
+    margin-bottom: 64px;
+  }
+  @include mobile {
+    margin-bottom: 24px;
+  }
+  &_women {
+    background-image: url('../img/bg-women.jpg');
+    @include laptop {
+      background-image: url('../img/bg-women1024.jpg');
+    }
+    @include tablet {
+      background-image: url('../img/bg-women768.jpg');
+    }
+    @include mobile {
+      background-image: url('../img/bg-women320.jpg');
+    }
+  }
+  &_men {
+    background-image: url('../img/bg-men.jpg');
+    @include laptop {
+      background-image: url('../img/bg-men1024.jpg');
+    }
+    @include tablet {
+      background-image: url('../img/bg-men768.jpg');
+    }
+    @include mobile {
+      background-image: url('../img/bg-men320.jpg');
+    }
+  }
+  &__content {
+    padding: 172px 0 86px;
+    max-width: 590px;
+
+    @include tablet {
+      max-width: 402px;
+      padding: 156px 0 50px;
+    }
+    @include mobile {
+      max-width: 290px;
+      padding: 76px 0 24px;
+    }
+  }
+  &__title {
+    font-weight: 400;
+    font-size: 44px;
+    line-height: 120%;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+
+    @include tablet {
+      font-size: 30px;
+      margin-bottom: 24px;
+    }
+    @include mobile {
+      font-size: 20px;
+      margin-bottom: 16px;
+    }
+  }
+  &__link {
+    display: inline-block;
+    padding: 14px 40px;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    text-transform: uppercase;
+    border: 1px solid $second-color;
+    transition-property: background-color, border-color;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+    &:hover {
+      background-color: $dark-gray;
+      border-color: $dark-gray;
+    }
+    @include tablet {
+      padding: 12px 40px;
+      font-size: 10px;
+      line-height: 12px;
+    }
+  }
+}
