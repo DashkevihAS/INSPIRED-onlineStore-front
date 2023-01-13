@@ -5,5 +5,5 @@ import { renderGoods } from '../render/renderGoods';
 export const mainPage = (gender = 'women') => {
   renderNavigation(gender);
   renderHero(gender);
-  renderGoods();
+  renderGoods(gender);
 };
