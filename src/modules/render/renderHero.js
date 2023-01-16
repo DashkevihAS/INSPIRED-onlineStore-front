@@ -1,6 +1,8 @@
 import { createElement } from '../createElement';
+import { TITLE } from '../const';
 
 export const renderHero = (gender) => {
+  console.log('gender: ', gender);
   const hero = document.querySelector('.hero');
 
   if (!gender) {
@@ -14,11 +16,12 @@ export const renderHero = (gender) => {
   const heroLink = createElement('a', {
     className: 'hero__link',
     textContent: 'Перейти',
-    href: `#/${gender}/bathrobes`,
+    href: `#/product/${TITLE[gender].id}`,
   });
+
   const heroTitle = createElement('h2', {
     className: 'hero__title',
-    textContent: 'Новая коллекция Бюстгальтер-балконет',
+    textContent: TITLE[gender].title,
   });
 
   createElement(
