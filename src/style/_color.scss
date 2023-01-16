@@ -17,15 +17,4 @@
     height: 12px;
     border-radius: 50%;
   }
-
-  &_white::after {
-    background-color: #ffffff;
-    border: 0.4px solid #000000;
-  }
-  &_red::after {
-    background-color: #ff0000;
-  }
-  &_black::after {
-    background-color: #000000;
-  }
 }
