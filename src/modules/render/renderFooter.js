@@ -61,29 +61,30 @@ export const renderFooter = () => {
     `,
   });
 
-  const footerCategory = createElement('div', {
-    className: 'footer__item footer__item_category footer-category',
-  });
+  const footerCategory = createElement(
+    'div',
+    {
+      className: 'footer__item footer__item_category footer-category',
+    },
+    {
+      child: createElement('h2', {
+        className: 'footer__title footer-category__title',
+        textContent: 'Каталог',
+      }),
+    },
+  );
 
-  const footerCategoryTitle = createElement('h2', {
-    className: 'footer__title footer-category__title',
-    textContent: 'Каталог',
-  });
-
-  footerCategory.append(footerCategoryTitle);
-
-  console.log(DATA.navigation);
-
-  const footerCategoryList = createElement('ul', {
-    className: 'footer-category__list',
-  });
+  const footerCategoryList = createElement(
+    'ul',
+    {
+      className: 'footer-category__list',
+    },
+    {
+      parrent: footerCategory,
+    },
+  );
 
   for (const genderName in DATA.navigation) {
-    const subtitle = createElement('h3', {
-      className: 'footer-category__subtitle',
-      textContent: DATA.navigation[genderName].title,
-    });
-
     const categoryItem = createElement(
       'li',
       {
@@ -91,59 +92,62 @@ export const renderFooter = () => {
       },
       {
         parrent: footerCategoryList,
+        child: createElement(
+          'h3',
+          {
+            className: 'footer-category__subtitle',
+          },
+          {
+            child: createElement('a', {
+              className: 'footer__link',
+              href: `#/${genderName}`,
+              textContent: DATA.navigation[genderName].title,
+            }),
+          },
+        ),
       },
     );
 
-    categoryItem.append(subtitle);
-    footerCategory.append(footerCategoryList);
-
-    const categorySublist = createElement('ul', {
-      className: 'footer-category__sublist',
-    });
-
-    const subitems = DATA.navigation[genderName].list.map((category) =>
-      createElement(
-        'a',
-        {
-          className: 'footer__link',
-          href: `#/${genderName}/${category.slug}`,
-          textContent: category.title,
-        },
-        {
-          parrent: createElement('li', {
-            className: 'footer-category__subitem',
-          }),
-        },
-      ),
+    createElement(
+      'ul',
+      {
+        className: 'footer-category__sublist',
+      },
+      {
+        parrent: categoryItem,
+        childs: DATA.navigation[genderName].list.map((category) =>
+          createElement(
+            'a',
+            {
+              className: 'footer__link',
+              href: `#/${genderName}/${category.slug}`,
+              textContent: category.title,
+            },
+            {
+              parrent: createElement('li', {
+                className: 'footer-category__subitem',
+              }),
+            },
+          ),
+        ),
+      },
     );
-
-    categorySublist.append(...subitems);
-    categoryItem.append(categorySublist);
   }
 
   createElement(
     'div',
     {
-      className: 'container',
+      className: 'container footer__container',
     },
     {
       parrent: footer,
-      child: createElement(
-        'div',
-        {
-          className: 'footer__container',
-        },
-        {
-          parrent: footer,
-          childs: [
-            footerCategory,
-            footerSocial,
-            footerContacts,
-            footerCopyright,
-            footerDevelopment,
-          ],
-        },
-      ),
+      childs: [
+        footerCategory,
+        footerSocial,
+        footerContacts,
+        footerCopyright,
+        footerDevelopment,
+      ],
     },
   );
 };

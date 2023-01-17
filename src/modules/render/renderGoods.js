@@ -1,13 +1,15 @@
 import { getData } from '../getData';
-import { API_URL, DATA } from '../const';
+import { API_URL, COUNT_PAGINATION, DATA } from '../const';
 import { createElement } from '../createElement';
+import { renderPagination } from './renderPagination';
 
 export const renderGoods = async (title, params) => {
+  console.log('params: ', params);
   const goodsElem = document.querySelector('.goods');
   goodsElem.textContent = '';
 
-  const goods = await getData(`${API_URL}/api/goods`, params);
-
+  const data = await getData(`${API_URL}/api/goods`, params);
+  const goods = Array.isArray(data) ? data : data.goods;
   const container = createElement(
     'div',
     {
@@ -52,7 +54,7 @@ export const renderGoods = async (title, params) => {
       },
     );
 
-    const colorsList = createElement(
+    createElement(
       'ul',
       {
         className: 'product__color-list',
@@ -81,27 +83,28 @@ export const renderGoods = async (title, params) => {
     return li;
   });
 
-  const productsList = createElement(
+  createElement(
     'ul',
     {
       className: 'goods__list',
     },
     {
+      parrent: container,
       childs: listCards,
     },
   );
 
-  container.append(productsList);
+  if (data.pages && data.pages > 1) {
+    const pagination = createElement(
+      'div',
+      {
+        className: 'goods__pagination pagination',
+      },
+      {
+        parrent: container,
+      },
+    );
 
-  // <ul class='product__color-list'>
-  //   <li class='product__color-item'>
-  //     <div class='color color_red color_check'></div>
-  //   </li>
-  //   <li class='product__color-item'>
-  //     <div class='color color_white'></div>
-  //   </li>
-  //   <li class='product__color-item'>
-  //     <div class='color color_black'></div>
-  //   </li>
-  // </ul>;
+    renderPagination(pagination, data.page, data.pages, COUNT_PAGINATION);
+  }
 };
