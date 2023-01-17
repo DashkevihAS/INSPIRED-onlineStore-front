@@ -3,9 +3,7 @@ import './index.scss';
 
 import { router } from './modules/router';
 
-import { mainPage } from './modules/mainPage/mainPage';
-import { menMainPage } from './modules/mainPage/menMainPage';
-import { womenMainPage } from './modules/mainPage/womenMainPage';
+import { mainPage } from './modules/mainPage';
 import { renderFooter } from './modules/render/renderFooter';
 import { renderHeader } from './modules/render/renderHeader';
 import { getData } from './modules/getData';
@@ -13,6 +11,7 @@ import { getData } from './modules/getData';
 import { API_URL, DATA } from './modules/const';
 import { createScssColors } from './modules/createScssColors';
 import { createElement } from './modules/createElement';
+import { categoryPage } from './modules/categoryPage';
 
 const init = async () => {
   try {
@@ -29,23 +28,18 @@ const init = async () => {
       mainPage();
     });
     router.on('women', () => {
-      womenMainPage();
+      mainPage('women');
     });
     router.on('men', () => {
-      menMainPage();
+      mainPage('men');
     });
+    router.on('/:gender/:category', categoryPage);
 
     router.on('search', (data) => {
       console.log('data: ', data.params.value);
     });
-
-    // setTimeout(() => {
-    //   router.navigate('men');
-    // }, 3000);
-    // setTimeout(() => {
-    //   router.navigate('women');
-    // }, 6000);
   } catch (error) {
+    console.warn(error);
     createElement(
       'h2',
       {

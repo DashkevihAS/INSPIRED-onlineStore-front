@@ -1,8 +1,26 @@
 import { DATA } from '../const';
 import { createElement } from '../createElement';
 
-export const renderNavigation = (gender) => {
+// flag не  даст перерендериться если renderNavigation уже запускался
+let flag = false;
+
+// prevGender запустит  renderNavigation  если сменили gender
+let prevGender = '';
+
+export const renderNavigation = (gender, category) => {
   const navigation = document.querySelector('.navigation');
+
+  if (!gender) {
+    navigation.style.display = 'none';
+  } else {
+    navigation.style.display = '';
+  }
+
+  if (flag && prevGender === gender) return;
+
+  prevGender = gender;
+  flag = true;
+
   navigation.textContent = '';
 
   const container = createElement(
@@ -59,7 +77,9 @@ export const renderNavigation = (gender) => {
         child: createElement(
           'a',
           {
-            className: 'category__link ',
+            className: `category__link ${
+              category === item.slug ? 'category__link_active' : ''
+            }`,
             textContent: item.title,
             href: `#/${gender}/${item.slug}`,
           },
