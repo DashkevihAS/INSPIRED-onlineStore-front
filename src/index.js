@@ -12,6 +12,7 @@ import { API_URL, DATA } from './modules/const';
 import { createScssColors } from './modules/createScssColors';
 import { createElement } from './modules/createElement';
 import { categoryPage } from './modules/categoryPage';
+import { searchPage } from './modules/searchPage';
 
 const init = async () => {
   try {
@@ -35,9 +36,7 @@ const init = async () => {
     });
     router.on('/:gender/:category', categoryPage);
 
-    router.on('search', (data) => {
-      console.log('data: ', data.params.value);
-    });
+    router.on('search', searchPage);
   } catch (error) {
     console.warn(error);
     createElement(

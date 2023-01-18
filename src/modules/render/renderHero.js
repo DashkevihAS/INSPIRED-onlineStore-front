@@ -2,6 +2,7 @@ import { createElement } from '../createElement';
 import { TITLE } from '../const';
 
 export const renderHero = (gender) => {
+  console.log('HEROgender: ', gender);
   const hero = document.querySelector('.hero');
 
   if (!gender) {
