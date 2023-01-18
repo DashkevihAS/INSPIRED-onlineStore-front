@@ -10,6 +10,8 @@ let prevGender = '';
 export const renderNavigation = (gender, category) => {
   const navigation = document.querySelector('.navigation');
 
+  console.log(gender, category);
+
   if (!gender) {
     navigation.style.display = 'none';
   } else {

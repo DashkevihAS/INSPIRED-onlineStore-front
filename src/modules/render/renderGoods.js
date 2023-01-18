@@ -4,7 +4,6 @@ import { createElement } from '../createElement';
 import { renderPagination } from './renderPagination';
 
 export const renderGoods = async (title, params) => {
-  console.log('params: ', params);
   const goodsElem = document.querySelector('.goods');
   goodsElem.textContent = '';
 
