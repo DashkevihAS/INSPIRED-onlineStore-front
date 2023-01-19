@@ -1,14 +1,54 @@
 import { getData } from '../getData';
-import { API_URL, COUNT_PAGINATION, DATA } from '../const';
-import { createElement } from '../createElement';
+import { API_URL, COUNT_PAGINATION, DATA, goodsElem } from '../const';
+import { createElement } from '../utils/createElement';
 import { renderPagination } from './renderPagination';
+import { getFavorite } from '../controllers/favoriteController';
 
 export const renderGoods = async (title, params) => {
-  const goodsElem = document.querySelector('.goods');
   goodsElem.textContent = '';
 
   const data = await getData(`${API_URL}/api/goods`, params);
   const goods = Array.isArray(data) ? data : data.goods;
+
+  if (!goods.length) {
+    createElement(
+      'h3',
+      {
+        className: 'goods__message',
+        textContent: 'По вашему запросу ничего не найдено',
+      },
+      {
+        parrent: createElement(
+          'div',
+          {
+            className: 'container',
+          },
+          {
+            parrent: goodsElem,
+            child: createElement(
+              'h2',
+              {
+                className: 'goods__title',
+                textContent: title,
+              },
+              {
+                child: createElement('sup', {
+                  className: 'goods__title-sup',
+                  textContent: ' (0)',
+                }),
+                parrent: container,
+              },
+            ),
+          },
+        ),
+      },
+    );
+
+    return;
+  }
+
+  const favoriteList = getFavorite();
+
   const container = createElement(
     'div',
     {
@@ -16,10 +56,21 @@ export const renderGoods = async (title, params) => {
     },
     {
       parrent: goodsElem,
-      child: createElement('h2', {
-        className: 'goods__title',
-        textContent: title,
+    },
+  );
+
+  createElement(
+    'h2',
+    {
+      className: 'goods__title',
+      textContent: title,
+    },
+    {
+      child: createElement('sup', {
+        className: 'goods__title-sup',
+        textContent: data?.totalCount ? ` (${data?.totalCount})` : '',
       }),
+      parrent: container,
     },
   );
 
@@ -36,7 +87,9 @@ export const renderGoods = async (title, params) => {
       <div class="product__row">
         <p class="product__price">руб ${product.price}</p>
         <button 
-          class="product__btn-favorite" 
+          class="favorite ${
+            favoriteList.includes(product.id) ? 'favorite_active' : ''
+          }" 
           aria-label="добавить в избранное" 
           data-id=${product.id} ></button>
       </div>

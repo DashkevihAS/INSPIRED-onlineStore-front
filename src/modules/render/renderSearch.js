@@ -1,5 +1,5 @@
 import { searchController } from '../controllers/searchController.js';
-import { createElement } from '../createElement.js';
+import { createElement } from '../utils/createElement.js';
 
 export const search = createElement('div', {
   className: 'search',

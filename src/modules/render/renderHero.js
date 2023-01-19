@@ -1,14 +1,12 @@
-import { createElement } from '../createElement';
-import { TITLE } from '../const';
+import { createElement } from '../utils/createElement';
+import { hero, TITLE } from '../const';
 
 export const renderHero = (gender) => {
-  console.log('HEROgender: ', gender);
-  const hero = document.querySelector('.hero');
-
   if (!gender) {
     hero.style.display = 'none';
     return;
   }
+  hero.style.display = '';
 
   hero.className = `hero hero_${gender}`;
   hero.textContent = '';

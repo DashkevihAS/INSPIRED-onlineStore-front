@@ -1,5 +1,5 @@
-import { DATA } from '../const';
-import { createElement } from '../createElement';
+import { DATA, navigation } from '../const';
+import { createElement } from '../utils/createElement';
 
 // flag не  даст перерендериться если renderNavigation уже запускался
 let flag = false;
@@ -8,15 +8,11 @@ let flag = false;
 let prevGender = '';
 
 export const renderNavigation = (gender, category) => {
-  const navigation = document.querySelector('.navigation');
-
-  console.log(gender, category);
-
   if (!gender) {
     navigation.style.display = 'none';
-  } else {
-    navigation.style.display = '';
+    return;
   }
+  navigation.style.display = '';
 
   if (flag && prevGender === gender) return;
 

@@ -1,5 +1,7 @@
-import { createElement } from '../createElement';
+import { createElement } from '../utils/createElement';
 import { router } from '../router';
+
+import { getUrPagination } from '../utils/getUrPagination';
 
 export const renderPagination = (wrapper, page, pages, count) => {
   wrapper.textContent = '';
@@ -44,30 +46,20 @@ export const renderPagination = (wrapper, page, pages, count) => {
             page === n ? 'pagination__link_active' : ''
           }`,
           textContent: n,
-          href: !router.getCurrentLocation().params?.value
-            ? `${router.getCurrentLocation().url}?page=${n}`
-            : `${router.getCurrentLocation().url}?value=${
-                router.getCurrentLocation().params.value
-              }&page=${n}`,
+          href: getUrPagination(n),
         }),
       },
     );
   }
-
-  console.log(router.getCurrentLocation());
 
   if (pages > count) {
     createElement(
       'a',
       {
         className: `pagination__arrow pagination__arrow_start ${
-          isNOtStart ? '' : 'pagination__arrow_disabled'
+          page !== 1 ? '' : 'pagination__arrow_disabled'
         }`,
-        href: !router.getCurrentLocation().params?.value
-          ? `${router.getCurrentLocation().url}?page=1`
-          : `${router.getCurrentLocation().url}?value=${
-              router.getCurrentLocation().params.value
-            }&page=1`,
+        href: getUrPagination(1),
         innerHTML: `
         <svg 
           width="24" 
@@ -90,11 +82,7 @@ export const renderPagination = (wrapper, page, pages, count) => {
         className: `pagination__arrow pagination__arrow_end ${
           isEnd ? 'pagination__arrow_disabled' : ''
         }`,
-        href: !router.getCurrentLocation().params?.value
-          ? `${router.getCurrentLocation().url}?page=${pages}`
-          : `${router.getCurrentLocation().url}?value=${
-              router.getCurrentLocation().params.value
-            }&page=${pages}`,
+        href: getUrPagination(pages),
         innerHTML: `
         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path d="M10 15.06L13.0904 12L10 8.94L10.9514 8L15 12L10.9514 16L10 15.06Z" />
