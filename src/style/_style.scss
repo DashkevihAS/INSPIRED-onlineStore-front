@@ -55,10 +55,19 @@ figure,
 fieldset {
   margin: 0;
 }
+fieldset {
+  padding: 0;
+  margin: 0;
+  border: none;
+}
 
-visually-hidden {
+.visually-hidden {
   position: fixed;
   transform: scale(0);
+}
+
+.input-hide {
+  appearance: none;
 }
 
 main {
