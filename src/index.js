@@ -10,7 +10,7 @@ import { getData } from './modules/getData';
 
 import { API_URL, DATA } from './modules/const';
 import { createScssColors } from './modules/createScssColors';
-import { createElement } from './modules/createElement';
+import { createElement } from './modules/utils/createElement';
 import { categoryPage } from './modules/pages/categoryPage';
 import { searchPage } from './modules/pages/searchPage';
 

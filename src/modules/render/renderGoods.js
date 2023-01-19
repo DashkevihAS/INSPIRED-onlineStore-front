@@ -1,6 +1,6 @@
 import { getData } from '../getData';
 import { API_URL, COUNT_PAGINATION, DATA } from '../const';
-import { createElement } from '../createElement';
+import { createElement } from '../utils/createElement';
 import { renderPagination } from './renderPagination';
 
 export const renderGoods = async (title, params) => {
@@ -9,6 +9,33 @@ export const renderGoods = async (title, params) => {
 
   const data = await getData(`${API_URL}/api/goods`, params);
   const goods = Array.isArray(data) ? data : data.goods;
+
+  if (!goods.length) {
+    createElement(
+      'h3',
+      {
+        className: 'goods__message',
+        textContent: 'По вашему запросу ничего не найдено',
+      },
+      {
+        parrent: createElement(
+          'div',
+          {
+            className: 'container',
+            innerHTML: `
+            <h2 class='goods__title'>${title}<sup>(${goods.length})</sup></h2>
+            `,
+          },
+          {
+            parrent: goodsElem,
+          },
+        ),
+      },
+    );
+
+    return;
+  }
+
   const container = createElement(
     'div',
     {

@@ -2,17 +2,18 @@ import { renderGoods } from '../render/renderGoods';
 import { renderHero } from '../render/renderHero';
 import { renderNavigation } from '../render/renderNavigation';
 
-export const searchPage = (data) => {
-  console.log('data: ', data);
-  const searchValue = data.params.value;
+export const searchPage = (routerData) => {
+  const searchValue = routerData.params.value;
+
   const params = { search: searchValue };
-  if (data.params?.page) {
-    params.page = data.params.page;
+
+  if (routerData.params?.page) {
+    params.page = routerData.params.page;
   }
 
   const title = searchValue;
 
-  renderNavigation('men', 'socks');
+  renderNavigation('men');
   renderHero(false);
   renderGoods(title, params);
 };

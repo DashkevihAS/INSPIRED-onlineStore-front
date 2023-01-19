@@ -1,4 +1,4 @@
-import { createElement } from '../createElement';
+import { createElement } from '../utils/createElement';
 import { TITLE } from '../const';
 
 export const renderHero = (gender) => {
@@ -8,7 +8,7 @@ export const renderHero = (gender) => {
     hero.style.display = 'none';
     return;
   }
-  hero.style.display = 'block';
+  hero.style.display = '';
 
   hero.className = `hero hero_${gender}`;
   hero.textContent = '';

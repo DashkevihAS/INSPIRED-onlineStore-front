@@ -1,5 +1,5 @@
 import { DATA } from '../const';
-import { createElement } from '../createElement';
+import { createElement } from '../utils/createElement';
 
 // flag не  даст перерендериться если renderNavigation уже запускался
 let flag = false;
@@ -12,9 +12,9 @@ export const renderNavigation = (gender, category) => {
 
   if (!gender) {
     navigation.style.display = 'none';
-  } else {
-    navigation.style.display = '';
+    return;
   }
+  navigation.style.display = '';
 
   if (flag && prevGender === gender) return;
 
