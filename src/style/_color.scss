@@ -3,11 +3,13 @@
   width: 18px;
   height: 18px;
   border-radius: 50%;
+  display: block;
+
   &_check {
-    border: 0.4px solid #929292;
+    border: 0.4px solid $gray;
   }
 
-  &::after {
+  &:after {
     content: '';
     position: absolute;
     top: 50%;
