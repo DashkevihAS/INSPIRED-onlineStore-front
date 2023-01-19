@@ -1,7 +1,7 @@
-import { DATA } from './const';
-import { renderGoods } from './render/renderGoods';
-import { renderHero } from './render/renderHero';
-import { renderNavigation } from './render/renderNavigation';
+import { DATA } from '../const';
+import { renderGoods } from '../render/renderGoods';
+import { renderHero } from '../render/renderHero';
+import { renderNavigation } from '../render/renderNavigation';
 
 export const categoryPage = (routerData) => {
   const { gender, category } = routerData.data;

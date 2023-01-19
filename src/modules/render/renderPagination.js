@@ -54,8 +54,6 @@ export const renderPagination = (wrapper, page, pages, count) => {
     );
   }
 
-  console.log(router.getCurrentLocation());
-
   if (pages > count) {
     createElement(
       'a',
