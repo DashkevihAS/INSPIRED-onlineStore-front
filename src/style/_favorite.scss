@@ -1,0 +1,17 @@
+.favorite {
+  width: 24px;
+  height: 24px;
+  background-image: url('../img/heart.svg');
+  transition: 0.3s ease-in-out;
+  &:hover {
+    background-image: url('../img/heart-hover.svg');
+    transform: scale(1.2);
+  }
+  &_active {
+    background-image: url('../img/heart-red.svg');
+    &:hover {
+      background-image: url('../img/heart-red-hover.svg');
+      transform: scale(1.2);
+    }
+  }
+}

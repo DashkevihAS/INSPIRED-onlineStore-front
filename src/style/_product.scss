@@ -48,21 +48,6 @@
       line-height: 15px;
     }
   }
-  &__btn-favorite {
-    width: 24px;
-    height: 24px;
-    background-image: url('../img/heart.svg');
-    transition: background-image 0.3s ease-in-out;
-    &:hover {
-      background-image: url('../img/heart-red-hover.svg');
-    }
-    &_active {
-      background-image: url('../img/heart-red.svg');
-      &:hover {
-        background-image: url('../img/heart.svg');
-      }
-    }
-  }
   &__color-list {
     display: flex;
     align-items: center;
