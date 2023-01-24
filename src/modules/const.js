@@ -18,3 +18,4 @@ export const navigation = document.querySelector('.navigation');
 export const hero = document.querySelector('.hero');
 export const goodsElem = document.querySelector('.goods');
 export const footer = document.querySelector('.footer');
+export const card = document.querySelector('.card');

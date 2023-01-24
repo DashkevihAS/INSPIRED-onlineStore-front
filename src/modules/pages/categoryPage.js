@@ -1,10 +1,14 @@
 import { DATA } from '../const';
+import { renderCard } from '../render/renderCard';
 import { renderGoods } from '../render/renderGoods';
 import { renderHero } from '../render/renderHero';
 import { renderNavigation } from '../render/renderNavigation';
 
 export const categoryPage = (routerData) => {
   const { gender, category } = routerData.data;
+
+  if (!(gender in DATA.navigation)) return;
+
   const params = { gender, category };
 
   if (routerData.params?.page) {
@@ -17,5 +21,6 @@ export const categoryPage = (routerData) => {
 
   renderNavigation(gender, category);
   renderHero(false);
+  renderCard(false);
   renderGoods(title, params);
 };
