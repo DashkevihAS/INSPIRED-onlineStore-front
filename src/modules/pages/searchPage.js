@@ -1,3 +1,4 @@
+import { renderCard } from '../render/renderCard';
 import { renderGoods } from '../render/renderGoods';
 import { renderHero } from '../render/renderHero';
 import { renderNavigation } from '../render/renderNavigation';
@@ -15,5 +16,6 @@ export const searchPage = (routerData) => {
 
   renderNavigation('men');
   renderHero(false);
+  renderCard(false);
   renderGoods(title, params);
 };

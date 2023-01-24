@@ -14,6 +14,7 @@ import { createElement } from './modules/utils/createElement';
 import { categoryPage } from './modules/pages/categoryPage';
 import { searchPage } from './modules/pages/searchPage';
 import { favoriteController } from './modules/controllers/favoriteController';
+import { cardPage } from './modules/pages/cardPage';
 
 const init = async () => {
   try {
@@ -36,6 +37,8 @@ const init = async () => {
       mainPage('men');
     });
     router.on('/:gender/:category', categoryPage);
+
+    router.on('/product/:id', cardPage);
 
     router.on('/favorite', favoriteController);
 
