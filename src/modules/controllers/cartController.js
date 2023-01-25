@@ -1,10 +1,65 @@
 import { cart } from '../const';
+import { getData } from '../getData';
 import { renderCard } from '../render/renderCard';
 import { renderCart } from '../render/renderCart';
 import { renderGoods } from '../render/renderGoods';
 import { renderHero } from '../render/renderHero';
 import { renderNavigation } from '../render/renderNavigation';
 import { renderOrder } from '../render/renderOrder';
+import { API_URL } from '../const';
+
+export const cartGoodsStore = {
+  goods: [],
+  _add(product) {
+    if (!this.goods.some((item) => item.id === product.id)) {
+      this.goods.push(product);
+    }
+  },
+  add(goods) {
+    if (Array.isArray(goods)) {
+      goods.forEach((product) => {
+        this._add(product);
+      });
+    } else {
+      this._add(goods);
+    }
+  },
+  getProduct(id) {
+    return this.goods.find((item) => item.id === id);
+  },
+};
+
+export const calcTotalPrice = {
+  elemTotalPRice: null,
+  elemCount: null,
+  update() {
+    const cartList = getCart();
+    this.count = cartList.length;
+    this.totalPrice = cartList.reduce((sum, item) => {
+      const product = cartGoodsStore.getProduct(item.id);
+      return product.price * item.count + sum;
+    }, 0);
+    this.writeTotal();
+    this.writeCount();
+  },
+  updateCount() {
+    const cartList = getCart();
+    this.count = cartList.length;
+    this.writeCount();
+  },
+  writeTotal(elem = this.elemTotalPRice) {
+    if (elem) {
+      this.elemTotalPRice = elem;
+      elem.textContent = `руб ${this.totalPrice}`;
+    }
+  },
+  writeCount(elem = this.elemCount) {
+    if (elem) {
+      this.elemCount = elem;
+      elem.textContent = this.count;
+    }
+  },
+};
 
 export const getCart = () => JSON.parse(localStorage.getItem('cart') || '[]');
 
@@ -54,12 +109,18 @@ export const handlerCart = (e) => {
   if (target.closest('.item__del')) {
     removeProductCart(target.dataset);
     target.closest('.cart__item').remove();
+    calcTotalPrice.update();
   }
 };
 
 cart.addEventListener('click', handlerCart);
 
-export const cartController = () => {
+export const cartController = async () => {
+  const idList = getCart().map((item) => item.id);
+  const data = await getData(`${API_URL}/api/goods?list=${idList}&count=all`);
+
+  cartGoodsStore.add(data);
+
   renderNavigation({ render: false });
   renderHero({ render: false });
   renderCard({ render: false });

@@ -54,9 +54,25 @@
   }
 
   &__link {
+    position: relative;
     transition: color 0.3s ease-in-out;
     &:hover {
       color: $gray;
+    }
+    &-count {
+      position: absolute;
+      top: -2px;
+      right: -7px;
+      width: 18px;
+      height: 18px;
+      border: 1px solid #fff;
+      border-radius: 50%;
+      background-color: #000000;
+      color: aliceblue;
+      text-align: center;
+      font-weight: 600;
+      font-size: 9px;
+      line-height: 16px;
     }
   }
 }

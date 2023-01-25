@@ -1,7 +1,11 @@
 import { cart } from '../const';
 import { createElement } from '../utils/createElement';
-import { addProductCart, getCart } from '../controllers/cartController';
-import { removeProductCart } from '../controllers/cartController';
+import {
+  addProductCart,
+  calcTotalPrice,
+  cartGoodsStore,
+  getCart,
+} from '../controllers/cartController';
 import { getData } from '../getData';
 import { API_URL } from '../const';
 import { renderCount } from '../render/renderCount';
@@ -43,19 +47,22 @@ export const renderCart = ({ render }) => {
     },
   );
 
-  const totalPrice = createElement(
+  createElement(
     'p',
     {
       className: 'cart__total-price',
-      textContent: 'руб 0',
     },
     {
       parent: cartTotal,
+      cb(elem) {
+        calcTotalPrice.update();
+        calcTotalPrice.writeTotal(elem);
+      },
     },
   );
 
-  getCart().forEach(async (product) => {
-    const data = await getData(`${API_URL}/api/goods/${product.id}`);
+  getCart().forEach((product) => {
+    const data = cartGoodsStore.getProduct(product.id);
 
     const { id, count, color, size } = product;
     const { pic, title, price } = data;
@@ -78,6 +85,7 @@ export const renderCart = ({ render }) => {
     const countBlock = renderCount(count, 'item__count', (count) => {
       product.count = count;
       addProductCart(product, true);
+      calcTotalPrice.update();
     });
 
     createElement(

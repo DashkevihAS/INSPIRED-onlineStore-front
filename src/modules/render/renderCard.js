@@ -4,7 +4,7 @@ import { API_URL } from '../const';
 import { renderCount } from './renderCount';
 import { handlerFavorite } from '../controllers/favoriteController';
 import { getFavorite } from '../controllers/favoriteController';
-import { addProductCart } from '../controllers/cartController';
+import { addProductCart, calcTotalPrice } from '../controllers/cartController';
 
 export const renderCard = ({ data, render }) => {
   card.textContent = '';
@@ -65,6 +65,7 @@ export const renderCard = ({ data, render }) => {
             return;
           }
           addProductCart(product);
+          calcTotalPrice.updateCount();
         });
       },
     },
@@ -255,6 +256,7 @@ export const renderCard = ({ data, render }) => {
     type: 'submit',
     textContent: 'В корзину',
   });
+
   const addFavorite = createElement(
     'button',
     {
