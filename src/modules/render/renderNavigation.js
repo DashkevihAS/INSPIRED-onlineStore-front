@@ -29,7 +29,7 @@ export const renderNavigation = ({ gender, category, render }) => {
       className: 'container',
     },
     {
-      parrent: navigation,
+      parent: navigation,
     },
   );
 
@@ -39,7 +39,7 @@ export const renderNavigation = ({ gender, category, render }) => {
       className: 'navigation__gender gender',
     },
     {
-      parrent: container,
+      parent: container,
     },
   );
 
@@ -54,13 +54,13 @@ export const renderNavigation = ({ gender, category, render }) => {
         textContent: DATA.navigation[genderName].title,
       },
       {
-        parrent: createElement(
+        parent: createElement(
           'li',
           {
             className: 'gender__item',
           },
           {
-            parrent: genderList,
+            parent: genderList,
           },
         ),
       },
@@ -105,7 +105,7 @@ export const renderNavigation = ({ gender, category, render }) => {
       className: 'navigation__category category',
     },
     {
-      parrent: container,
+      parent: container,
       childs: categoryElems,
     },
   );

@@ -5,6 +5,8 @@ import { renderHero } from '../render/renderHero';
 import { renderGoods } from '../render/renderGoods';
 import { goodsElem } from '../const';
 import { renderCard } from '../render/renderCard';
+import { renderCart } from '../render/renderCart';
+import { renderOrder } from '../render/renderOrder';
 
 export const getFavorite = () =>
   JSON.parse(localStorage.getItem('favorite') || '[]');
@@ -43,10 +45,13 @@ export const favoriteController = () => {
   renderNavigation({ gender: 'women', render: true });
   renderHero({ render: false });
   renderCard({ render: false });
+  renderCart({ render: false });
+  renderOrder({ render: false });
   renderGoods({
     title: 'Избранное',
     params: {
       list: getFavorite(),
+      count: getFavorite().length,
     },
     render: true,
   });

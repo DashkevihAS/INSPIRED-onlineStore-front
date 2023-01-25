@@ -1,9 +1,9 @@
 import { countController } from '../controllers/countController';
 import { createElement } from '../utils/createElement';
 
-export const renderCount = (count) => {
+export const renderCount = (count, className, returnCount = () => {}) => {
   const control = createElement('div', {
-    className: 'card__count count',
+    className: `${className} count`,
   });
 
   const minus = createElement(
@@ -14,7 +14,7 @@ export const renderCount = (count) => {
       type: 'button',
     },
     {
-      parrent: control,
+      parent: control,
     },
   );
 
@@ -25,7 +25,7 @@ export const renderCount = (count) => {
       textContent: count,
     },
     {
-      parrent: control,
+      parent: control,
     },
   );
 
@@ -37,7 +37,7 @@ export const renderCount = (count) => {
       textContent: '+',
     },
     {
-      parrent: control,
+      parent: control,
     },
   );
 
@@ -49,11 +49,11 @@ export const renderCount = (count) => {
       value: count,
     },
     {
-      parrent: control,
+      parent: control,
     },
   );
 
-  countController(minus, number, plus, input);
+  countController(minus, number, plus, input, returnCount);
 
   return control;
 };

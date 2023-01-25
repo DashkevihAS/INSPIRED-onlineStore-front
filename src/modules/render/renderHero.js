@@ -28,7 +28,7 @@ export const renderHero = ({ gender, render }) => {
       className: 'container',
     },
     {
-      parrent: hero,
+      parent: hero,
       child: createElement(
         'div',
         {

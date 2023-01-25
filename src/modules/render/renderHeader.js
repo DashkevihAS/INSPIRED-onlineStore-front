@@ -61,7 +61,7 @@ createElement(
     innerHTML: `<img src="${logo}" alt="логотип Inspired" />`,
   },
   {
-    parrent: container,
+    parent: container,
   },
 );
 
@@ -71,7 +71,7 @@ const headerNavigation = createElement(
     className: 'header__navigation',
   },
   {
-    parrent: container,
+    parent: container,
   },
 );
 
@@ -81,7 +81,7 @@ createElement(
     className: 'header__nav-list',
   },
   {
-    parrent: headerNavigation,
+    parent: headerNavigation,
     childs: [
       createElement(
         'li',

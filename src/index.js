@@ -54,7 +54,7 @@ const init = async () => {
         textContent: 'Данные не загрузились, попробуйте позже...',
       },
       {
-        parrent: main,
+        parent: main,
         cb(h2) {
           h2.style.textAlign = 'center';
         },

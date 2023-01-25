@@ -5,6 +5,8 @@ import { renderHero } from '../render/renderHero';
 import { renderNavigation } from '../render/renderNavigation';
 import { API_URL } from '../const';
 import { renderCard } from '../render/renderCard';
+import { renderCart } from '../render/renderCart';
+import { renderOrder } from '../render/renderOrder';
 
 export const cardPage = async (routerData) => {
   const { id } = routerData.data;
@@ -22,5 +24,7 @@ export const cardPage = async (routerData) => {
   });
   renderHero({ render: false });
   renderCard({ data, render: true });
+  renderCart({ render: false });
+  renderOrder({ render: false });
   renderGoods({ title: 'Вам также может понравиться', params, render: true });
 };

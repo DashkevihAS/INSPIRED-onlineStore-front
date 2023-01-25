@@ -12,7 +12,7 @@ export const renderGoods = async ({ title, params, render }) => {
   const data = await getData(`${API_URL}/api/goods`, params);
   const goods = Array.isArray(data) ? data : data.goods;
 
-  if (!goods.length) {
+  if (!goods.length || (params.list && !params.list.length)) {
     createElement(
       'h3',
       {
@@ -20,13 +20,13 @@ export const renderGoods = async ({ title, params, render }) => {
         textContent: 'По вашему запросу ничего не найдено',
       },
       {
-        parrent: createElement(
+        parent: createElement(
           'div',
           {
             className: 'container',
           },
           {
-            parrent: goodsElem,
+            parent: goodsElem,
             child: createElement(
               'h2',
               {
@@ -38,7 +38,7 @@ export const renderGoods = async ({ title, params, render }) => {
                   className: 'goods__title-sup',
                   textContent: ' (0)',
                 }),
-                parrent: container,
+                parent: container,
               },
             ),
           },
@@ -57,7 +57,7 @@ export const renderGoods = async ({ title, params, render }) => {
       className: 'container',
     },
     {
-      parrent: goodsElem,
+      parent: goodsElem,
     },
   );
 
@@ -72,7 +72,7 @@ export const renderGoods = async ({ title, params, render }) => {
         className: 'goods__title-sup',
         textContent: data?.totalCount ? ` (${data?.totalCount})` : '',
       }),
-      parrent: container,
+      parent: container,
     },
   );
 
@@ -114,7 +114,7 @@ export const renderGoods = async ({ title, params, render }) => {
         className: 'product__color-list',
       },
       {
-        parrent: article,
+        parent: article,
         childs: product.colors.map((colorId, i) => {
           const color = DATA.colors.find((item) => item.id === colorId);
           return createElement(
@@ -143,7 +143,7 @@ export const renderGoods = async ({ title, params, render }) => {
       className: 'goods__list',
     },
     {
-      parrent: container,
+      parent: container,
       childs: listCards,
     },
   );
@@ -155,7 +155,7 @@ export const renderGoods = async ({ title, params, render }) => {
         className: 'goods__pagination pagination',
       },
       {
-        parrent: container,
+        parent: container,
       },
     );
 

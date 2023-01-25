@@ -12,7 +12,7 @@ export const renderPagination = (wrapper, page, pages, count) => {
       className: 'pagination__list',
     },
     {
-      parrent: wrapper,
+      parent: wrapper,
     },
   );
 
@@ -40,7 +40,7 @@ export const renderPagination = (wrapper, page, pages, count) => {
         className: 'pagination__item',
       },
       {
-        parrent: paginationList,
+        parent: paginationList,
         child: createElement('a', {
           className: `pagination__link ${
             page === n ? 'pagination__link_active' : ''
@@ -74,7 +74,7 @@ export const renderPagination = (wrapper, page, pages, count) => {
         ariaLabel: 'Перейти на первую страницу',
       },
       {
-        parrent: wrapper,
+        parent: wrapper,
       },
     );
     createElement(
@@ -94,7 +94,7 @@ export const renderPagination = (wrapper, page, pages, count) => {
         ariaLabel: 'Перейти на последнюю страницу',
       },
       {
-        parrent: wrapper,
+        parent: wrapper,
       },
     );
   }

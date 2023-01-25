@@ -1,7 +1,7 @@
 export const createElement = (
   tag,
   attr,
-  { child, childs, parrent, cb } = {},
+  { child, childs, parent, cb } = {},
 ) => {
   const element = document.createElement(tag);
   if (attr) {
@@ -16,8 +16,8 @@ export const createElement = (
     element.append(...childs);
   }
 
-  if (parrent && parrent instanceof HTMLElement) {
-    parrent.append(element);
+  if (parent && parent instanceof HTMLElement) {
+    parent.append(element);
   }
 
   if (cb && typeof cb === 'function') {
