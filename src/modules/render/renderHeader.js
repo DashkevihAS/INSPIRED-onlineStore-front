@@ -2,6 +2,7 @@ import { createElement } from '../utils/createElement';
 import logo from '../../img/logo.svg';
 import { search, searchToggle } from './renderSearch';
 import { header } from '../const';
+import { calcTotalPrice } from '../controllers/cartController';
 
 export const searchButton = createElement(
   'button',
@@ -34,6 +35,19 @@ export const cartLink = createElement('a', {
   `,
   href: '#cart',
 });
+createElement(
+  'p',
+  {
+    className: 'header__link-count',
+  },
+  {
+    parent: cartLink,
+    cb(elem) {
+      calcTotalPrice.writeCount(elem);
+    },
+  },
+);
+
 export const favoriteLink = createElement('a', {
   className: 'header__link',
   innerHTML: `
@@ -61,7 +75,7 @@ createElement(
     innerHTML: `<img src="${logo}" alt="логотип Inspired" />`,
   },
   {
-    parrent: container,
+    parent: container,
   },
 );
 
@@ -71,7 +85,7 @@ const headerNavigation = createElement(
     className: 'header__navigation',
   },
   {
-    parrent: container,
+    parent: container,
   },
 );
 
@@ -81,7 +95,7 @@ createElement(
     className: 'header__nav-list',
   },
   {
-    parrent: headerNavigation,
+    parent: headerNavigation,
     childs: [
       createElement(
         'li',
@@ -109,6 +123,7 @@ createElement(
 );
 
 export const renderHeader = () => {
+  calcTotalPrice.updateCount();
   header.append(container);
   header.after(search);
 };

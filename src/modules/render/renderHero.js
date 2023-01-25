@@ -1,8 +1,8 @@
 import { createElement } from '../utils/createElement';
 import { hero, TITLE } from '../const';
 
-export const renderHero = (gender) => {
-  if (!gender) {
+export const renderHero = ({ gender, render }) => {
+  if (!render) {
     hero.style.display = 'none';
     return;
   }
@@ -28,7 +28,7 @@ export const renderHero = (gender) => {
       className: 'container',
     },
     {
-      parrent: hero,
+      parent: hero,
       child: createElement(
         'div',
         {

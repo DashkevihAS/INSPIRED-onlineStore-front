@@ -15,7 +15,7 @@ const container = createElement(
     className: 'container search__container',
   },
   {
-    parrent: search,
+    parent: search,
   },
 );
 
@@ -25,7 +25,7 @@ const form = createElement(
     className: 'search__form',
   },
   {
-    parrent: container,
+    parent: container,
     cb: searchController,
   },
 );
@@ -39,7 +39,7 @@ createElement(
     placeholder: 'Найти...',
   },
   {
-    parrent: form,
+    parent: form,
   },
 );
 
@@ -51,6 +51,6 @@ createElement(
     textContent: 'Искать',
   },
   {
-    parrent: form,
+    parent: form,
   },
 );

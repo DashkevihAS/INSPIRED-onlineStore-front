@@ -78,7 +78,7 @@ export const renderFooter = () => {
       className: 'footer-category__list',
     },
     {
-      parrent: footerCategory,
+      parent: footerCategory,
     },
   );
 
@@ -89,7 +89,7 @@ export const renderFooter = () => {
         className: 'footer-category__item',
       },
       {
-        parrent: footerCategoryList,
+        parent: footerCategoryList,
         child: createElement(
           'h3',
           {
@@ -112,7 +112,7 @@ export const renderFooter = () => {
         className: 'footer-category__sublist',
       },
       {
-        parrent: categoryItem,
+        parent: categoryItem,
         childs: DATA.navigation[genderName].list.map((category) =>
           createElement(
             'a',
@@ -122,7 +122,7 @@ export const renderFooter = () => {
               textContent: category.title,
             },
             {
-              parrent: createElement('li', {
+              parent: createElement('li', {
                 className: 'footer-category__subitem',
               }),
             },
@@ -138,7 +138,7 @@ export const renderFooter = () => {
       className: 'container footer__container',
     },
     {
-      parrent: footer,
+      parent: footer,
       childs: [
         footerCategory,
         footerSocial,

@@ -4,12 +4,12 @@ import { API_URL } from '../const';
 import { renderCount } from './renderCount';
 import { handlerFavorite } from '../controllers/favoriteController';
 import { getFavorite } from '../controllers/favoriteController';
-import { addProductCart } from '../controllers/cartController';
+import { addProductCart, calcTotalPrice } from '../controllers/cartController';
 
-export const renderCard = (data) => {
+export const renderCard = ({ data, render }) => {
   card.textContent = '';
 
-  if (!data) return;
+  if (!render) return;
 
   const { colors, id, title, description, price, pic, size: sizes } = data;
 
@@ -19,7 +19,7 @@ export const renderCard = (data) => {
       className: 'container card__container',
     },
     {
-      parrent: card,
+      parent: card,
     },
   );
   createElement(
@@ -30,7 +30,7 @@ export const renderCard = (data) => {
       alt: title,
     },
     {
-      parrent: container,
+      parent: container,
     },
   );
 
@@ -41,12 +41,14 @@ export const renderCard = (data) => {
       id: 'order',
     },
     {
-      parrent: container,
+      parent: container,
       cb(form) {
         form.addEventListener('submit', (e) => {
           e.preventDefault();
+          const formData = new FormData(form);
+          const product = Object.fromEntries(formData);
 
-          if (!form.size.value) {
+          if (!product.size) {
             const invalidMessage = createElement(
               'p',
               {
@@ -54,7 +56,7 @@ export const renderCard = (data) => {
                 textContent: 'Выберите размер',
               },
               {
-                parrent: form,
+                parent: form,
               },
             );
             setTimeout(() => {
@@ -62,10 +64,8 @@ export const renderCard = (data) => {
             }, 2000);
             return;
           }
-
-          const formData = new FormData(form);
-          const product = Object.fromEntries(formData);
           addProductCart(product);
+          calcTotalPrice.updateCount();
         });
       },
     },
@@ -78,7 +78,7 @@ export const renderCard = (data) => {
       textContent: title,
     },
     {
-      parrent: form,
+      parent: form,
     },
   );
   createElement(
@@ -88,7 +88,7 @@ export const renderCard = (data) => {
       textContent: `руб ${price}`,
     },
     {
-      parrent: form,
+      parent: form,
     },
   );
 
@@ -98,7 +98,7 @@ export const renderCard = (data) => {
       className: 'card__vendor-code',
     },
     {
-      parrent: form,
+      parent: form,
     },
   );
 
@@ -109,7 +109,7 @@ export const renderCard = (data) => {
       textContent: `Артикул`,
     },
     {
-      parrent: vendorCode,
+      parent: vendorCode,
     },
   );
   createElement(
@@ -119,7 +119,7 @@ export const renderCard = (data) => {
       textContent: id,
     },
     {
-      parrent: vendorCode,
+      parent: vendorCode,
     },
   );
   createElement(
@@ -130,7 +130,7 @@ export const renderCard = (data) => {
       value: id,
     },
     {
-      parrent: vendorCode,
+      parent: vendorCode,
     },
   );
 
@@ -141,7 +141,7 @@ export const renderCard = (data) => {
       innerHTML: `<p class="card__subtitle card__color-title">Цвет</p>`,
     },
     {
-      parrent: form,
+      parent: form,
       child: createElement(
         'div',
         {
@@ -160,7 +160,7 @@ export const renderCard = (data) => {
                   className: `card__color-item color color_${color}`,
                 },
                 {
-                  parrent: colorList,
+                  parent: colorList,
                   child: createElement('input', {
                     className: 'color__input input-hide',
                     type: 'radio',
@@ -177,7 +177,7 @@ export const renderCard = (data) => {
                   className: 'color__check',
                 },
                 {
-                  parrent: label,
+                  parent: label,
                 },
               );
             });
@@ -194,7 +194,7 @@ export const renderCard = (data) => {
       innerHTML: `<p class="card__subtitle card__size-title">Размер</p>`,
     },
     {
-      parrent: form,
+      parent: form,
       child: createElement(
         'div',
         {
@@ -209,7 +209,7 @@ export const renderCard = (data) => {
                   className: `card__size-item  ${size}`,
                 },
                 {
-                  parrent: sizeList,
+                  parent: sizeList,
                   child: createElement('input', {
                     className: 'size__input input-hide',
                     type: 'radio',
@@ -226,7 +226,7 @@ export const renderCard = (data) => {
                   textContent: size,
                 },
                 {
-                  parrent: label,
+                  parent: label,
                 },
               );
             });
@@ -249,13 +249,14 @@ export const renderCard = (data) => {
   `,
   );
 
-  const count = renderCount(1);
+  const count = renderCount(1, 'card__count');
 
   const addCard = createElement('button', {
     className: 'card__add-cart main-button',
     type: 'submit',
     textContent: 'В корзину',
   });
+
   const addFavorite = createElement(
     'button',
     {
@@ -278,7 +279,7 @@ export const renderCard = (data) => {
       className: 'card__control',
     },
     {
-      parrent: form,
+      parent: form,
       childs: [count, addCard, addFavorite],
     },
   );
