@@ -17,7 +17,7 @@ export const renderPagination = (wrapper, page, pages, count) => {
   );
 
   const isNOtStart = page - Math.floor(count / 2) > 1;
-  const isEnd = page + Math.floor(count / 2) > pages;
+  const isEnd = page + Math.floor(count / 2) >= pages;
 
   if (count > pages) {
     count = pages;
@@ -57,9 +57,10 @@ export const renderPagination = (wrapper, page, pages, count) => {
       'a',
       {
         className: `pagination__arrow pagination__arrow_start ${
-          page !== 1 ? '' : 'pagination__arrow_disabled'
+          page > 2 ? '' : 'pagination__arrow_disabled'
         }`,
         href: getUrPagination(1),
+        tabIndex: !isNOtStart ? '-1' : '0',
         innerHTML: `
         <svg 
           width="24" 
@@ -83,6 +84,8 @@ export const renderPagination = (wrapper, page, pages, count) => {
           isEnd ? 'pagination__arrow_disabled' : ''
         }`,
         href: getUrPagination(pages),
+        tabIndex: isEnd ? '-1' : '0',
+
         innerHTML: `
         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path d="M10 15.06L13.0904 12L10 8.94L10.9514 8L15 12L10.9514 16L10 15.06Z" />

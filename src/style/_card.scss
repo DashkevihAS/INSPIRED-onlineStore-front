@@ -124,6 +124,7 @@
 
   &__color-list {
     display: flex;
+    flex-wrap: wrap;
     gap: 6px;
   }
 
@@ -156,6 +157,7 @@
 
   &__size-list {
     display: flex;
+    flex-wrap: wrap;
     gap: 4px;
     font-size: 14px;
     line-height: 17px;
