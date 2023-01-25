@@ -4,10 +4,14 @@ import { renderGoods } from '../render/renderGoods';
 import { renderCard } from '../render/renderCard';
 
 export const mainPage = (gender = 'women') => {
-  renderNavigation(gender);
-  renderHero(gender);
-  renderCard(false);
-  renderGoods('Новинки', {
-    gender,
+  renderNavigation({ gender, render: true });
+  renderHero({ gender, render: true });
+  renderCard({ render: false });
+  renderGoods({
+    title: 'Новинки',
+    params: {
+      gender,
+    },
+    render: true,
   });
 };

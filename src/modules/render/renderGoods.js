@@ -4,8 +4,10 @@ import { createElement } from '../utils/createElement';
 import { renderPagination } from './renderPagination';
 import { getFavorite } from '../controllers/favoriteController';
 
-export const renderGoods = async (title, params) => {
+export const renderGoods = async ({ title, params, render }) => {
   goodsElem.textContent = '';
+
+  if (!render) return;
 
   const data = await getData(`${API_URL}/api/goods`, params);
   const goods = Array.isArray(data) ? data : data.goods;

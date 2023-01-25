@@ -19,8 +19,8 @@ export const categoryPage = (routerData) => {
     (item) => item.slug === category,
   );
 
-  renderNavigation(gender, category);
-  renderHero(false);
-  renderCard(false);
-  renderGoods(title, params);
+  renderNavigation({ gender, category, render: true });
+  renderHero({ render: false });
+  renderCard({ render: false });
+  renderGoods({ title, params, render: true });
 };

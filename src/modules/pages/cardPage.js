@@ -10,12 +10,17 @@ export const cardPage = async (routerData) => {
   const { id } = routerData.data;
 
   const data = await getData(`${API_URL}/api/goods/${id}`);
+  const { gender, category } = data;
 
   const search = data.title?.split(' ')[0].toLowerCase();
-  const params = { search, gender: data.gender, count: 4 };
+  const params = { search, gender, count: 4 };
 
-  renderNavigation(data.gender, data.category);
-  renderHero(false);
-  renderCard(data);
-  renderGoods('Вам также может понравиться', params);
+  renderNavigation({
+    gender,
+    category,
+    render: true,
+  });
+  renderHero({ render: false });
+  renderCard({ data, render: true });
+  renderGoods({ title: 'Вам также может понравиться', params, render: true });
 };

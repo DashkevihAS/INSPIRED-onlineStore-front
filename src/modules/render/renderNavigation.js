@@ -6,17 +6,19 @@ let flag = false;
 
 // prevGender запустит  renderNavigation  если сменили gender
 let prevGender = '';
+let prevCategory = '';
 
-export const renderNavigation = (gender, category) => {
-  if (!gender) {
+export const renderNavigation = ({ gender, category, render }) => {
+  if (!render) {
     navigation.style.display = 'none';
     return;
   }
   navigation.style.display = '';
 
-  if (flag && prevGender === gender) return;
+  if (flag && prevGender === gender && prevCategory === category) return;
 
   prevGender = gender;
+  prevCategory = category;
   flag = true;
 
   navigation.textContent = '';

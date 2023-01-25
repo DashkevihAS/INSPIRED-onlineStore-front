@@ -15,6 +15,7 @@ import { categoryPage } from './modules/pages/categoryPage';
 import { searchPage } from './modules/pages/searchPage';
 import { favoriteController } from './modules/controllers/favoriteController';
 import { cardPage } from './modules/pages/cardPage';
+import { cartController } from './modules/controllers/cartController';
 
 const init = async () => {
   try {
@@ -43,6 +44,8 @@ const init = async () => {
     router.on('/favorite', favoriteController);
 
     router.on('search', searchPage);
+
+    router.on('cart', cartController);
   } catch (error) {
     console.warn(error);
     createElement(

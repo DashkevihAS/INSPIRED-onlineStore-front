@@ -14,8 +14,8 @@ export const searchPage = (routerData) => {
 
   const title = searchValue;
 
-  renderNavigation('men');
-  renderHero(false);
-  renderCard(false);
-  renderGoods(title, params);
+  renderNavigation({ gender: 'men', render: true });
+  renderHero({ render: false });
+  renderCard({ render: false });
+  renderGoods({ title, params, render: true });
 };

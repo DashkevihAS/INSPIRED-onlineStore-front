@@ -40,10 +40,14 @@ export const handlerFavorite = (e) => {
 goodsElem.addEventListener('click', handlerFavorite);
 
 export const favoriteController = () => {
-  renderNavigation('women');
-  renderHero(false);
-  renderCard(false);
-  renderGoods('Избранное', {
-    list: getFavorite(),
+  renderNavigation({ gender: 'women', render: true });
+  renderHero({ render: false });
+  renderCard({ render: false });
+  renderGoods({
+    title: 'Избранное',
+    params: {
+      list: getFavorite(),
+    },
+    render: true,
   });
 };
