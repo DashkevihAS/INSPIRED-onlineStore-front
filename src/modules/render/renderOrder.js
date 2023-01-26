@@ -179,18 +179,6 @@ ${
   clearCart();
 };
 
-`
-
-<div class="modal__total">
-<p class="modal__total-title">Итого:</p>
-<p class="modal__total-price">руб <span>25170</span></p>
-</div>
-
-<button class="modal__close">
-  
-</button>
-`;
-
 export const renderOrder = ({ render }) => {
   order.textContent = '';
 
@@ -227,7 +215,21 @@ export const renderOrder = ({ render }) => {
               .then((orderInfo) => showOrderInfo(orderInfo))
               .catch((err) => console.warn(err));
           } else {
-            showOrderInfo('В корзине нет товаров');
+            createElement(
+              'p',
+              {
+                className: 'order__message',
+                textContent: 'В корзине нет товаров',
+              },
+              {
+                parent: form,
+                cb(el) {
+                  setTimeout(() => {
+                    el.remove();
+                  }, 2000);
+                },
+              },
+            );
           }
         });
       },
