@@ -65,15 +65,17 @@ export const getCart = () => JSON.parse(localStorage.getItem('cart') || '[]');
 
 export const removeProductCart = ({ id, color, size }) => {
   const cartList = getCart();
-  console.log('cartList1: ', cartList);
   const index = cartList.findIndex(
     (item) => item.id === id && item.color === color && item.size === size,
   );
 
   cartList.splice(index, 1);
-  console.log('cartList2: ', cartList);
 
   localStorage.setItem('cart', JSON.stringify(cartList));
+};
+
+export const clearCart = () => {
+  localStorage.removeItem('cart');
 };
 
 export const addProductCart = (product, equal) => {
