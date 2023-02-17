@@ -19,8 +19,24 @@ import { cartController } from './modules/controllers/cartController';
 
 const init = async () => {
   try {
+    const messageLoading = createElement(
+      'h2',
+      {
+        textContent: 'Данные загружаются...',
+      },
+      {
+        parent: main,
+        cb(h2) {
+          h2.style.textAlign = 'center';
+        },
+      },
+    );
+
     DATA.navigation = await getData(`${API_URL}/api/categories`);
     DATA.colors = await getData(`${API_URL}/api/colors`);
+
+    messageLoading.remove();
+
     createScssColors(DATA.colors);
 
     router.on('*', () => {

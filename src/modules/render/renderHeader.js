@@ -123,6 +123,7 @@ createElement(
 );
 
 export const renderHeader = () => {
+  header.textContent = '';
   calcTotalPrice.updateCount();
   header.append(container);
   header.after(search);
